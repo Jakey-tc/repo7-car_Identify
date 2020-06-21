@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>车辆损伤检测</title>
+
+    <style>
+
+        .car_info {
+
+            width: 100%;
+            height: 400px;
+            display: none;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .car_text {
+
+            width:30%;
+
+        }
+
+        .car_img {
+
+            align-self: center;
+            width: 65%;
+
+        }
+
+        .car_img img {
+
+            width: 550px;
+            height: 400px;
+        }
+    </style>
+
+
+</head>
+<body ng-app="car" ng-controller="carController">
+
+
+<form enctype="multipart/form-data" method="POST" name="form1" id="form1">
+    上传车辆图片：<input type="file" name="file" id="file"/>
+    <input type="button" ng-click="getCarInfo();" value="上传" />
+</form>
+
+<div class="car_info" id="car_info">
+
+    <div class="car_text">
+
+        <span style="font-size: 30px">损伤信息：</span><br/><br/>
+        <span style="font-size: 25px">损伤区域: </span><input type="text" name="parts" style="border:none;color:red;font-size: 25px;" ng-model="carInfo[0].parts" readonly="readonly"><br/><br/>
+        <span style="font-size: 25px">损伤类型：</span><input type="text" name="type" style="border:none;color:#ff0000;font-size: 25px;"
+                    ng-model="carInfo[0].type" readonly="readonly"><br/><br/>
+        <span style="font-size: 25px">损伤面积：</span><input type="text" name="area" style="border:none;color:red;font-size: 25px;"
+                    ng-model="carInfo[0].numeric_info[0].area" readonly="readonly"><br/><br/>
+       <span style="font-size: 25px"> 损伤占比：</span><input type="text" name="ratio" style="border:none;color:red;font-size: 25px;"
+                    ng-model="carInfo[0].numeric_info[0].ratio" readonly="readonly"><br/><br/>
+        <span style="font-size: 25px">损伤信息精准度：</span><input type="text" id="probability" name="probability" style="border:none;color:red;font-size: 25px;"
+                       ng-model="carInfo[0].probability" readonly="readonly"/><br/><br/>
+
+    </div>
+    <div class="car_img">
+        <img ng-src="{{imgUrl}}"><br/>
+        图片路径：{{imgUrl}}
+
+    </div>
+
+
+</div>
+
+
+</body>
+<!-- 导入AngularJs资源 -->
+<script type="text/javascript" src="http://8.129.178.243:8080/car/js/angular.min.js"></script>
+<script type="text/javascript" src="http://8.129.178.243:8080/car/js/jquery-3.4.1.min.js"></script>
+
+<script>
+    var car = angular.module("car", []);
+</script>
+<script type="text/javascript" src="http://8.129.178.243:8080/car/js/carService.js"></script>
+<script type="text/javascript" src="http://8.129.178.243:8080/car/js/carController.js"></script>
+
+
+</html>
